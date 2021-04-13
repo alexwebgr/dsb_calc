@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Shopper, type: :model do
   describe 'associations' do
+    it { should have_many(:orders) }
   end
 
   describe 'validations' do
