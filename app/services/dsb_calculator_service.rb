@@ -3,6 +3,10 @@ class DsbCalculatorService
     new(amount).calculate
   end
 
+  def self.create_dsb
+    new.create_dsb
+  end
+
   private
 
   attr_reader :amount
@@ -23,5 +27,21 @@ class DsbCalculatorService
 
   def calculate
     ((amount * fee_calc) / 100).round(3)
+  end
+
+  def create_dsb
+    where_hash = {}
+    where_hash[:completed_at] = (Time.current - 7.days)..Time.current
+
+    orders = Order
+      .completed
+      .where(where_hash)
+
+    orders.each do |order|
+      Disbursement.create(
+        merchant_id: order.merchant_id,
+        amount_payable: DsbCalculatorService.calculate(order.amount)
+      )
+    end
   end
 end

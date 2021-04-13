@@ -34,4 +34,37 @@ RSpec.describe DsbCalculatorService, type: :service do
       end
     end
   end
+
+  describe '#create_dsb' do
+    let(:merchants) { create_list(:merchant, 5) }
+    let(:shoppers) { create_list(:shopper, 5) }
+
+    before do
+      5.times do |num|
+        create(:order,
+               merchant: merchants[num],
+               shopper: shoppers[num],
+               amount: rand(1.01..500.01).round(3),
+               completed_at: Time.current - num.days
+        )
+      end
+    end
+
+    before do
+      5.times do |num|
+        create(:order,
+               merchant: merchants[num],
+               shopper: shoppers[num],
+               amount: rand(1.01..500.01).round(3),
+               completed_at: nil
+        )
+      end
+    end
+
+    it 'creates the Disbursements' do
+      expect {
+        described_class.create_dsb
+      }.to change(Disbursement, :count).by(5)
+    end
+  end
 end
