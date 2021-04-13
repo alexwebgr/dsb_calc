@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'dbs/index'
   resources :disbursements
   resources :orders
   resources :shoppers
