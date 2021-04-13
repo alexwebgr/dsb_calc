@@ -1,4 +1,4 @@
-namespace :dbs do
+namespace :dsb do
   desc "Create completed orders"
   task create_completed_orders: :environment do
     merchants = Merchant.first(5).pluck(:id)

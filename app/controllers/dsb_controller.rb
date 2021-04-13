@@ -1,4 +1,4 @@
-class DbsController < ApplicationController
+class DsbController < ApplicationController
   def index
     if params[:start_date].nil?
       render json: { message: 'required param start_date missing' }, status: :unprocessable_entity and return

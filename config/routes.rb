@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'dbs/index'
+  get 'dsb/index'
   resources :disbursements
   resources :orders
   resources :shoppers

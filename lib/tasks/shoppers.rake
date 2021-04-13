@@ -1,4 +1,4 @@
-namespace :dbs do
+namespace :dsb do
   desc "Create shoppers"
   task create_shoppers: :environment do
     shoppers = [

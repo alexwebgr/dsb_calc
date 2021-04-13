@@ -1,4 +1,4 @@
-namespace :dbs do
+namespace :dsb do
   desc "Create merchants"
   task create_merchants: :environment do
     Merchant.create([
